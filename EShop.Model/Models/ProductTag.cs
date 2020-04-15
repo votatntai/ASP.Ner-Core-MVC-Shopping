@@ -3,21 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EShop.Model.Models
 {
-    [Table("OrderDetails")]
-    public class OrderDetail
+    [Table("ProductTags")]
+    public class ProductTag
     {
-        [Key]
-        public int OrderID { get; set; }
-
         [Key]
         public int ProductID { get; set; }
 
-        public int? Quantity { get; set; }
-
-        [ForeignKey("OrderID")]
-        public virtual Order Order { get; set; }
+        [Key]
+        [Column(TypeName = "varchar")]
+        [MaxLength(50)]
+        public string TagID { get; set; }
 
         [ForeignKey("ProductID")]
         public virtual Product Product { get; set; }
+
+        [ForeignKey("TagID")]
+        public virtual Tag Tag { get; set; }
     }
 }

@@ -1,21 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using EShop.Model.Abstract;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EShop.Model.Models
 {
-    [Table("MenuGroups")]
-    public class MenuGroup
+    [Table("Page")]
+    public class Page : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(256)]
         public string Name { get; set; }
 
-        //Chỉ ra khóa ngoại của Menu và MenuGroup
-        public virtual IEnumerable<Menu> Menus { get; set; }
+        [Column(TypeName = "varchar")]
+        [MaxLength(256)]
+        [Required]
+        public string Alias { get; set; }
+
+        public string Content { get; set; }
     }
 }
